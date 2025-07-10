@@ -19,8 +19,8 @@ The NWT has been verified and validated through a series of test cases (TCs). Th
 1. **Select a test case**
     - At the beginning of the main script, set the test case by changing: `case = 'TCx'`.
 2. **Set simulation parameters**
-    - Parameters for each test case are configured in `settings_TCx.py`
-      - Define the output directory by modifying the `save_path`
+    - Parameters for each test case are configured in `settings_TCx.py`:
+      - Define the output directory by modifying the `save_path`;
       - Adjust spatial resolution via `res_x`, `res_y` and `nz` in the `domain` function; set temporal resolution and output frequency via `dt` and `dt_save` in the `set_time` function; specify the wavemaker motion in the `wavemaker` function.
 3. **Output files**
     - After the simulation completes, output files will be saved to the specified directory. The expected files vary by test case: 
