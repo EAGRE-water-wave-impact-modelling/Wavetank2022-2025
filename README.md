@@ -6,15 +6,19 @@ This repository shares the source code for a potential-flow-based numerical wave
 The NWT has been verified and validated through a series of test cases (TCs). Their source codes are shared to support reproducibility and encourage further development.
 
 ## Code Files for the Test Cases 1-4
-- Main script:
-    - Method 1: `3D_tank.py`
-    - Method 2: `3D_tank_VP.py`
-- Shared modules:
-    - Test case configurations: `settings_TCx.py`
-    - Simulation output management: `savings.py`
-- Specific to Method 1:
-    - Explicit weak formulations for SE and SV schemes: `solvers_full.py`
- 
+- **Method 1**:
+    - `3D_tank.py`: main script, with time variables in wavemaker-related functions replaced by *Firedrake* `Constant` objects;
+    - `settings_TCx.py`: test case configuration file, where `Constant` objects are used when defining wavemaker-related functions;
+    - `savings.py`: simulation output management;
+    - `solvers_full.py`: explicit weak formulations for the SE and SV schemes.
+- **Method 2**:
+    - `3D_tank_VP.py`: main script[^1];
+    - `settings_TCx.py`: test case configuration file;
+    - `savings.py`: simulation output management.
+- The folder [202002](202002) contains experimental data for TC4, including sampled wavemaker input and probe measurements.
+
+[^1]: Updating `t` using `Constant` unfortunately caused a `segmentation fault` (as of July 2025).
+
 ## Simulation Instructions
 1. **Select a test case**
     - At the beginning of the main script, set the test case by changing: `case = 'TCx'`.
@@ -29,5 +33,18 @@ The NWT has been verified and validated through a series of test cases (TCs). Th
       - TC3: `checkpoints.csv` containing energy, water depths at three vertices and wavemaker-related data, `readme.txt`;
       - TC4: `energy.csv`, `probes.csv` containing numerical measurements, `readme.txt`.
 
-## Reproduce the Figures
-The numerical results can be processed and visualised with the post-processing codes provided in the folder [post-processing](post-processing).
+## Reproducing the Figures
+The numerical results can be processed and visualised using the post-processing scripts provided in the folder [post-processing](post-processing). The table below summarises the scripts used to reproduce each figure.
+
+**Note**: You may need to adjust the `data_path` in each script to match your chosen output directory.
+
+| Test Case| Figure No. | Data Sources | Post-Processing Script(s)  |
+|  :----:  |  :----:    |    :----:    |      :----:           |
+|   TC1    |   Fig.3    |  `energy.csv`, `.npy` field data files | `pp_SWS_TC1VP.py` |
+|   TC2    |   Fig.4    |  `.npy` field data files | Fig.4(a),(b): `pp-TC1-convergence-dx.py`<br> Fig.4(c),(d): `pp-TC1-convergence-nz.py`<br> Fig.4(e),(f): `pp-TC1-convergence-dt.py`  |
+|   TC2    |   Fig.5, Fig.6    |  `.npy` field data files |  `pp-TC1-advanced-convergence.py` |
+|   TC3    |   Fig.7, Fig.8 |  `checkpoints.csv` | `pp_energy_figs_TC3VP.py` |
+|   TC4    |   Fig.10    |  `probes.csv`, folder `202002` | `pp_wavemaker_TC4VP.py`  |
+|   TC4    |   Fig.12   |  `probes.csv`, folder `202002` | `pp_probes_TC4VP.py`  |
+|   TC4    |   Fig.13   |  `probes.csv`, folder `202002` | `FFT_202002.m`  |
+
