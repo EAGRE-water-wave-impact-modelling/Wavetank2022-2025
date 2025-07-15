@@ -20,6 +20,7 @@ The NWT has been verified and validated through a series of test cases (TCs). Th
     - At the beginning of the main script, set the test case by changing: `case = 'TCx'`.
 2. **Set simulation parameters**
     - Parameters for each test case are configured in `settings_TCx.py`:
+      - Set the time-stepping scheme via `scheme`: `SE`/`SV` for Method 1, `MMP` for Method 2;
       - Define the output directory by modifying the `save_path`;
       - Adjust spatial resolution via `res_x`, `res_y` and `nz` in the `domain` function; set temporal resolution and output frequency via `dt` and `dt_save` in the `set_time` function; specify the wavemaker motion in the `wavemaker` function.
 3. **Output files**
