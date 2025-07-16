@@ -6,12 +6,12 @@ This repository shares the source code for a potential-flow-based numerical wave
 The NWT has been verified and validated through a series of test cases (TCs). Their source codes are shared to support reproducibility and encourage further development.
 
 ## Code Files for the Test Cases 1-4
-- **Method 1**:
+- **Method 1** (Folder [TC-SV](TC-SV)):
     - `3D_tank.py`: main script, with time variables in wavemaker-related functions replaced by *Firedrake* `Constant` objects;
     - `settings_TCx.py`: test case configuration file, where `Constant` objects are used when defining wavemaker-related functions;
     - `savings.py`: simulation output management;
     - `solvers_full.py`: explicit weak formulations for the SE and SV schemes.
-- **Method 2**:
+- **Method 2** (Folder [TC-MMP](TC-MMP)):
     - `3D_tank_VP.py`: main script[^1];
     - `settings_TCx.py`: test case configuration file;
     - `savings.py`: simulation output management.
