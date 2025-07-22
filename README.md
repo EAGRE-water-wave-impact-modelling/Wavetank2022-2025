@@ -50,7 +50,7 @@ The numerical solutions can be processed and visualised using the post-processin
 
 | Test Case| Figure No. | Data Sources | Post-Processing Script  | Note(s) |
 |  :----:  |  :----:    |    :----:    |      :----:           | :--- |
-|   TC1    |   Fig.3    |  `energy.csv`, <br/> `.npy` files | `pp_SWS_TC1VP.py` | Set `data_path{1/2}` for both methods |
+|   TC1    |   Fig.3    |  `energy.csv`, <br/> `.npy` files | `pp_SWS_TC1VP.py` | Set `scheme`, and `data_path{1/2}` for both methods |
 |   TC2a   |   Fig.4(a),(b)  |  `.npy` files | `pp-TC1-convergence-dx.py` | Set `data_path{/1/2/3/4/5}`, and `path` in `save_figure`. |
 |   TC2a   |   Fig.4(c),(d)  |  `.npy` files | `pp-TC1-convergence-nz.py` | Set `data_path{/1/2/3/4/5/6/7/8}`, and `path` in `save_figure`. |
 |   TC2b   |   Fig.4(e),(f)  |  `.npy` files | `pp-TC1-convergence-dt.py` | Set `data_path{/1/2/3/4/5/6}`, and `path` in `save_figure`. |
