@@ -31,7 +31,7 @@ The NWT has been verified and validated through a series of test cases (TCs). Th
 
 | Test Case | Parameters to be configured in `settings_TCx.py` |
 | :---:     |    :----    |
-| TC1       |  Two simulations for both methods: <br/> 1. `dt = min(dx,dz)/pi`, `dt_save = dt` in function `set_time`; <br/> 2. `dt = 0.5*(min(dx,dz)/pi)`, `dt_save = 2*dt`. |
+| TC1       |  Two simulations for both methods (should be run in serial): <br/> 1. `dt = min(dx,dz)/pi`, `dt_save = dt` in function `set_time`; <br/> 2. `dt = 0.5*(min(dx,dz)/pi)`, `dt_save = 2*dt`. |
 | TC2a      |  Method 2. Finest resolution for the reference solution: `res_x = 2*pi/3200`, `n_z = 64`, `dt = (Lx/3200)/(2*pi)`, `dt_save = dt*64`. <br/> Five computations with different horizontal resolutions: `res_x = 2*pi/{50/100/200/400/800}`, where `n_z = 32`, `dt = ((Lx/3200)/(2*pi))*2`, `dt_save = dt*32` remain unchanged. <br/> Eight computations with different vertical resolutions: `n_z = {2/3/4/5/6/8/16/32}`, where `res_x = 2*pi/800`, `dt = ((Lx/3200)/(2*pi))*2`, `dt_save = dt*32` remain unchanged.|
 | TC2b      |  Six computations with different temporal resolutions: `dt = ((Lx/3200)/(2*pi))*{2/4/8/16/32/64}` (`dt_save = dt*{32/16/8/4/2/1}`), where `res_x = 2*pi/800`, `n_z = 32` remain unchanged. |
 | TC2c      | Thirteen computations needed. The coarsest resolution for $u_{crc}$ is choosen as `res_x = 2*pi/50`, `n_z = 4`, `dt = ((Lx/3200)/(2*pi))*64`, `dt_save = dt`. The other two finer vertical resolutions are chosen as `n_z = 6` and `n_z = 8`. |
