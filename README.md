@@ -6,18 +6,18 @@ This repository shares the source code for a potential-flow-based numerical wave
 The NWT has been verified and validated through a series of test cases (TCs). Their source codes are shared to support reproducibility and encourage further development.
 
 ## Code Files for the Test Cases 1-4
-- **Method 1** (Folder [TC-SV](TC-SV)):
-    - `3D_tank.py`: main script, with time variables in wavemaker-related functions replaced by *Firedrake* `Constant` objects;
-    - `settings_TCx.py`: test case configuration file, where `Constant` objects are used when defining wavemaker-related functions;
+- **Method 1**:
+    - `3D_tank.py`: main script;
+    - `settings_TCx.py`: test case configuration file;
     - `savings.py`: simulation output management;
     - `solvers_full.py`: explicit weak formulations for the SE and SV schemes.
-- **Method 2** (Folder [TC-MMP](TC-MMP)):
-    - `3D_tank_VP.py`: main script[^1];
+- **Method 2**:
+    - `3D_tank_VP.py`: main script;
     - `settings_TCx.py`: test case configuration file;
     - `savings.py`: simulation output management.
+- For both methods, the time variables in wavemaker-related functions are now replaced by *Firedrake* `Constant` objects to improve computational peformance.
 - The folder [202002](202002) contains experimental data for TC4, including sampled wavemaker input and probe measurements.
 
-[^1]: Updating `t` using `Constant` unfortunately caused a `segmentation fault` (as of July 2025).
 
 ## Simulation Instructions
 1. **Select a test case**
@@ -27,14 +27,16 @@ The NWT has been verified and validated through a series of test cases (TCs). Th
       - Set the time-stepping scheme via `scheme`: `SE`/`SV` for Method 1, `MMP` for Method 2;
       - Define the output directory by modifying the `save_path`;
       - Adjust spatial resolution via `res_x`, `res_y` and `nz` in the `domain` function; set temporal resolution and output frequency via `dt` and `dt_save` in the `set_time` function; specify the wavemaker motion in the `wavemaker` function.
-    - Specifically, parameters that need to be modified for each test case are summarised in the table below.
+    - Specifically, parameters that need to be modified for each test case are summarised in the table below. Note that the output directory `save_path` needs to be specified for each simulation.
 
 | Test Case | Parameters to be configured in `settings_TCx.py` |
 | :---:     |    :----    |
-| TC1       |  Two simulations for both methods (should be run in serial): <br/> 1. `dt = min(dx,dz)/pi`, `dt_save = dt` in function `set_time`; <br/> 2. `dt = 0.5*(min(dx,dz)/pi)`, `dt_save = 2*dt`. |
-| TC2a      |  Method 2. Finest resolution for the reference solution: `res_x = 2*pi/3200`, `n_z = 64`, `dt = (Lx/3200)/(2*pi)`, `dt_save = dt*64`. <br/> Five computations with different horizontal resolutions: `res_x = 2*pi/{50/100/200/400/800}`, where `n_z = 32`, `dt = ((Lx/3200)/(2*pi))*2`, `dt_save = dt*32` remain unchanged. <br/> Eight computations with different vertical resolutions: `n_z = {2/3/4/5/6/8/16/32}`, where `res_x = 2*pi/800`, `dt = ((Lx/3200)/(2*pi))*2`, `dt_save = dt*32` remain unchanged.|
+| TC1       |  Two simulations for both MMP and SV (should be run in serial): <br/> 1. `dt = min(dx,dz)/pi`, `dt_save = dt` in function `set_time`; <br/> 2. `dt = 0.5*(min(dx,dz)/pi)`, `dt_save = 2*dt`. |
+| TC2a      |  TC2 was computed with Method 2, and it can be run in serial or parallel.  <br/> Finest resolution for the reference solution: `res_x = 2*pi/3200`, `n_z = 64`, `dt = (Lx/3200)/(2*pi)`, `dt_save = dt*64`. <br/> Five computations with different horizontal resolutions: `res_x = 2*pi/{50/100/200/400/800}`, where `n_z = 32`, `dt = ((Lx/3200)/(2*pi))*2`, `dt_save = dt*32` remain unchanged. <br/> Eight computations with different vertical resolutions: `n_z = {2/3/4/5/6/8/16/32}`, where `res_x = 2*pi/800`, `dt = ((Lx/3200)/(2*pi))*2`, `dt_save = dt*32` remain unchanged.|
 | TC2b      |  Six computations with different temporal resolutions: `dt = ((Lx/3200)/(2*pi))*{2/4/8/16/32/64}` (`dt_save = dt*{32/16/8/4/2/1}`), where `res_x = 2*pi/800`, `n_z = 32` remain unchanged. |
 | TC2c      | Thirteen computations needed. The coarsest resolution for $u_{crc}$ is choosen as `res_x = 2*pi/50`, `n_z = 4`, `dt = ((Lx/3200)/(2*pi))*64`, `dt_save = dt`. The other two finer vertical resolutions are chosen as `n_z = 6` and `n_z = 8`. |
+| TC3       | Two simulations for both MMP and SV (serial or parallel): <br/> 1. `dt = 0.001` in function `set_time`; <br/> 2. `dt = 0.002` (`dt_save = 0.002` remains unchanged). |
+| TC4       | One simulation with both methods (serial or parallel): only need to change `scheme = "SV"` and `scheme = "MMP"`. |
 
 
 3. **Output files**
@@ -55,8 +57,8 @@ The numerical solutions can be processed and visualised using the post-processin
 |   TC2a   |   Fig.4(c),(d)  |  `.npy` files | `pp-TC1-convergence-nz.py` | Set `data_path{/1/2/3/4/5/6/7/8}`, and `path` in `save_figure`. |
 |   TC2b   |   Fig.4(e),(f)  |  `.npy` files | `pp-TC1-convergence-dt.py` | Set `data_path{/1/2/3/4/5/6}`, and `path` in `save_figure`. |
 |   TC2c   |   Table 1, 2    |  `.npy` files | `pp-TC1-Atiken.py` | Set `data_path{1/2/3}` for a group computations with coarse/medium/fine meshes. The time-averaged order of convergence can be read from the bottom figure. |
-|   TC2    |   Fig.5, Fig.6  |  `.npy` files |  `pp-TC1-advanced-convergence.py` | Set `data_folder` and thirteen `data_path_xxx`; switch between `'h'/'psi'` for `results`.
-|   TC3    |   Fig.7, Fig.8  |  `checkpoints.csv` | `pp_energy_figs_TC3VP.py` |
+|   TC2    |   Fig.5, Fig.6  |  `.npy` files |  `pp-TC1-advanced-convergence.py` | Set `data_folder` and thirteen `data_path_xxx`; switch between `'h'/'psi'` for `results`. |
+|   TC3    |   Fig.7, Fig.8  |  `checkpoints.csv` | `pp_energy_figs_TC3VP.py` | Set the four directories `file_MMP{1/2}` and `file_SV{1/2}`. |
 |   TC4    |   Fig.10    |  `probes.csv`, folder `202002` | `pp_wavemaker_TC4VP.py`  |
 |   TC4    |   Fig.12   |  `probes.csv`, folder `202002` | `pp_probes_TC4VP.py`  |
 |   TC4    |   Fig.13   |  `probes.csv`, folder `202002` | `FFT_202002.m`  |
