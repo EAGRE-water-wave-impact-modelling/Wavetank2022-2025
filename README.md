@@ -15,7 +15,7 @@ The NWT has been verified and validated through a series of test cases (TCs). Th
     - `3D_tank_VP.py`: main script;
     - `settings_TCx.py`: test case configuration file;
     - `savings.py`: simulation output management.
-- For both methods, the time variables in wavemaker-related functions are now replaced by *Firedrake* `Constant` objects to improve computational peformance.
+- For both methods, the time variables in wavemaker-related functions are now replaced by *Firedrake* `Constant` objects to improve computational performance.
 - The folder [202002](202002) contains experimental data for TC4, including sampled wavemaker input and probe measurements.
 
 
@@ -36,7 +36,7 @@ The NWT has been verified and validated through a series of test cases (TCs). Th
 | TC2b      |  Six computations with different temporal resolutions: `dt = ((Lx/3200)/(2*pi))*{2/4/8/16/32/64}` (`dt_save = dt*{32/16/8/4/2/1}`), where `res_x = 2*pi/800`, `n_z = 32` remain unchanged. |
 | TC2c      | Thirteen computations needed. The coarsest resolution for $u_{crc}$ is choosen as `res_x = 2*pi/50`, `n_z = 4`, `dt = ((Lx/3200)/(2*pi))*64`, `dt_save = dt`. The other two finer vertical resolutions are chosen as `n_z = 6` and `n_z = 8`. |
 | TC3       | Two simulations for both MMP and SV (serial or parallel): <br/> 1. `dt = 0.001` in function `set_time`; <br/> 2. `dt = 0.002` (`dt_save = 0.002` remains unchanged). |
-| TC4       | One simulation with both methods (serial or parallel): only need to change `scheme = "SV"` and `scheme = "MMP"`. |
+| TC4       | One simulation with both methods (serial or parallel): only need to switch between `scheme = "SV"` and `scheme = "MMP"`. |
 
 
 3. **Output files**
@@ -59,7 +59,7 @@ The numerical solutions can be processed and visualised using the post-processin
 |   TC2c   |   Table 1, 2    |  `.npy` files | `pp-TC1-Atiken.py` | Set `data_path{1/2/3}` for a group computations with coarse/medium/fine meshes. The time-averaged order of convergence can be read from the bottom figure. |
 |   TC2    |   Fig.5, Fig.6  |  `.npy` files |  `pp-TC1-advanced-convergence.py` | Set `data_folder` and thirteen `data_path_xxx`; switch between `'h'/'psi'` for `results`. |
 |   TC3    |   Fig.7, Fig.8  |  `checkpoints.csv` | `pp_energy_figs_TC3VP.py` | Set the four directories `file_MMP{1/2}` and `file_SV{1/2}`. |
-|   TC4    |   Fig.10    |  `probes.csv`, folder `202002` | `pp_wavemaker_TC4VP.py`  |
-|   TC4    |   Fig.12   |  `probes.csv`, folder `202002` | `pp_probes_TC4VP.py`  |
-|   TC4    |   Fig.13   |  `probes.csv`, folder `202002` | `FFT_202002.m`  |
+|   TC4    |   Fig.10    |  `probes.csv` <br/> folder `202002` | `pp_wavemaker_TC4VP.py`  | Set the directories of the wavemaker data `file_exp{1/2}` and numerical results `data_path`. |
+|   TC4    |   Fig.12   |  `probes.csv` <br/> folder `202002` | `pp_probes_TC4VP.py`  | Set the output directories for MMP and SV schemes via `data_path` and `data_path1` respectively. |
+|   TC4    |   Fig.13   |  `probes.csv` <br/> folder `202002` | `FFT_202002.m`  | Set the probe number via `probe = '{1/2/3/4/5/6}'`, the scheme and the corresponding directory of the file `probes.csv` in `Data_num`, and the directory of Elena's results in `Data_num2`. |
 
