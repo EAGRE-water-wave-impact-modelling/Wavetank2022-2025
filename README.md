@@ -47,7 +47,7 @@ The NWT has been verified and validated through a series of test cases (TCs). Th
 ## :bar_chart: Reproducing the Results
 The numerical solutions can be processed and visualised using the post-processing scripts provided in the folder [post-processing](post-processing). The table below summarises the scripts used to reproduce each figure or table.
 
-:warning: **Note**: Before running a script, make sure to adjust the data_path variable (and any relevant output paths) to match your simulation output directory.
+:warning: **Note**: Before running a script, make sure to adjust the `data_path` variable (and any relevant output paths) to match your simulation output directory.
 
 | Test Case| Figure/Table No. | Data Sources | Post-Processing Script  | Notes |
 |  :----:  |  :----:    |    :----:    |      :----:           | :--- |
