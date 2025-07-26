@@ -59,6 +59,6 @@ The numerical solutions can be processed and visualised using the post-processin
 |   TC2    |   Fig.5, Fig.6  |  `.npy` files |  `pp-TC1-advanced-convergence.py` | Set `data_folder` and thirteen `data_path_xxx`; switch `results` between `'h'/'psi'`. |
 |   TC3    |   Fig.7, Fig.8  |  `checkpoints.csv` | `pp_energy_figs_TC3VP.py` | Set the four directories `file_MMP{1/2}` and `file_SV{1/2}`. |
 |   TC4    |   Fig.10    |  `probes.csv` <br/> folder `202002` | `pp_wavemaker_TC4VP.py`  | Set the directories of the wavemaker data `file_exp{1/2}` and numerical results `data_path`. |
-|   TC4    |   Fig.12   |  `probes.csv` <br/> folder `202002` | `pp_probes_TC4VP.py`  | Set the output directories for MMP and SV schemes via `data_path` and `data_path1` respectively. |
+|   TC4    |   Fig.12   |  `probes.csv` <br/> folder `202002` | `pp_probes_TC4VP.py`  | Set the measurements directory via `measurements`, and the output directories of the two methods via `data_path` and `data_path1` respectively. |
 |   TC4    |   Fig.13   |  `probes.csv` <br/> folder `202002` | `FFT_202002.m`  | Set the probe number using `probe = '{1/2/3/4/5/6}'`, the scheme-specific directory for `probes.csv` in `Data_num`, and the directory of Elena's results in `Data_num2`. |
 
