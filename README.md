@@ -37,6 +37,7 @@ The NWT has been verified and validated through a series of test cases (TCs). Th
 | TC2c      | Thirteen computations needed. The coarsest resolution for $u_{crc}$ is choosen as `res_x = 2*pi/50`, `n_z = 4`, `dt = ((Lx/3200)/(2*pi))*64`, `dt_save = dt`. The other two finer vertical resolutions are chosen as `n_z = 6` and `n_z = 8`. |
 | TC3       | Two simulations for MMP and SV (serial or parallel): <br/> 1. `dt = 0.001` in function `set_time`; <br/> 2. `dt = 0.002` (`dt_save = 0.002` remains unchanged). |
 | TC4       | One simulation with both methods (serial or parallel): switch between `scheme = "SV"` and `scheme = "MMP"`. |
+| TC5       |**`pot_sp2.py`,`PFE_sp2max.py`,** <br/> `PFE_sp2maxA.py`, `PFE_sp2A.py`, `PFE_sp2energy.py`<br/> in the folder TC5_codes <br/> |
 
 3. **Output files**
     - After the simulation completes, output files will be saved to the specified directory. The expected files vary by test case: 
