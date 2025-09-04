@@ -1,17 +1,17 @@
 # Numerical Wavetank in *Firedrake*: Two Method Implementations
 This repository shares the source code for a potential-flow-based numerical wavetank (NWT) built upon Luke's variational principle (VP). Two numerical models have been established and implemented in [*Firedrake*](https://www.firedrakeproject.org/): 
-- **Method 1**: Weak formulations are manually derived from the space-discretised VP and explicitly formulated in the code.
-- **Method 2**: Weak formulations are generated automatically from the encoded time-discretised VP, resulting in an implicit implementation.
+- **Model 1**: Weak formulations are manually derived from the space-discretised VP and explicitly formulated in the code.
+- **Model 2**: Weak formulations are generated automatically from the encoded time-discretised VP, resulting in an implicit implementation.
 
 The NWT has been verified and validated through a series of test cases (TCs). Their source codes are shared to support reproducibility and encourage further development.
 
 ## 🗂️ Code Files for Test Cases 1–4
-- **Method 1**:
+- **Model 1**:
     - `3D_tank.py`: main script;
     - `settings_TCx.py`: test case configuration file;
     - `savings.py`: simulation output management;
     - `solvers_full.py`: explicit weak formulations for the SE and SV schemes.
-- **Method 2**:
+- **Model 2**:
     - `3D_tank_VP.py`: main script;
     - `settings_TCx.py`: test case configuration file;
     - `savings.py`: simulation output management.
